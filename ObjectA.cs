@@ -16,12 +16,6 @@ public class ObjectA : MonoBehaviour
         ObjectB.touchPlayer += imprimir;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     void imprimir()
     {
         Debug.Log("Has tocado a B!!!");

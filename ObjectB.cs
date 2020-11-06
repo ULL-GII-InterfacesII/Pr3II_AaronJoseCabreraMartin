@@ -16,12 +16,6 @@ public class ObjectB : MonoBehaviour
         ObjectA.contactPlayer += incrementarContador;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "Player" && touchPlayer != null)
