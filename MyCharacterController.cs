@@ -29,10 +29,10 @@ public class MyCharacterController : MonoBehaviour
             tf_.Translate(velocity_ * Vector3.back * Time.deltaTime);
         }else if (Input.GetKey("left"))
         {
-            tf_.Rotate(0, -30*velocity_  * Time.deltaTime, 0);
+            tf_.Rotate(0, -15*velocity_  * Time.deltaTime, 0);
         }else if (Input.GetKey("right"))
         {
-            tf_.Rotate(0, 30*velocity_ *  Time.deltaTime, 0);
+            tf_.Rotate(0, 15*velocity_ *  Time.deltaTime, 0);
         }
     }
 }

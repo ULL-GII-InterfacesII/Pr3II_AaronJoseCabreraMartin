@@ -30,10 +30,10 @@ public class MyCamera : MonoBehaviour
             tf_.Translate(velocity_ * Vector3.back * Time.deltaTime);
         } else if (Input.GetKey("left"))
         {
-            tf_.RotateAround(positionJugador, Vector3.up, -velocity_*30 * Time.deltaTime);
+            tf_.RotateAround(positionJugador, Vector3.up, -velocity_* 15 * Time.deltaTime);
         } else if (Input.GetKey("right"))
         {
-            tf_.RotateAround(positionJugador, Vector3.up, velocity_ * 30 * Time.deltaTime);
+            tf_.RotateAround(positionJugador, Vector3.up, velocity_ * 15 * Time.deltaTime);
         }
     }
 }
