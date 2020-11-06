@@ -4,16 +4,22 @@ using UnityEngine;
 
 public class ObjectA : MonoBehaviour
 {
-    //creamos el tipo delegado collisionWithPlayer
-    //collision porque es algo físico, para diferenciarlo de B
-    public delegate void collisionWithPlayer();
-    public static event collisionWithPlayer contactPlayer;
+    public delegate void contactWithPlayer();
+    public static event contactWithPlayer touchPlayer;
+
 
     // Start is called before the first frame update
     void Start()
     {
-        //establecemos que el delegado touchplayer de objetoB es nuestro metodo imprimir
-        ObjectB.touchPlayer += imprimir;
+        ObjectB.contactPlayer += imprimir;
+    }
+
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == "Player" && touchPlayer != null)
+        {
+            touchPlayer();
+        }
     }
 
     void imprimir()
@@ -21,19 +27,8 @@ public class ObjectA : MonoBehaviour
         Debug.Log("Has tocado a B!!!");
     }
 
-    void OnCollisionEnter(Collision other)
-    {
-        //si choco con player y mi evento no es nulo
-        if (other.gameObject.tag == "Player" && contactPlayer != null)
-        {
-            //llamo a mi evento
-            contactPlayer();
-        }
-    }
-    
     void OnDisable()
     {
-        //debemos liberar los delegados, unity no lo hace por nosotros
-        ObjectB.touchPlayer -= imprimir;
+        ObjectB.contactPlayer -= imprimir;
     }
 }

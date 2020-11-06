@@ -4,24 +4,18 @@ using UnityEngine;
 
 public class ObjectB : MonoBehaviour
 {
-    public delegate void contactWithPlayer();
-    public static event contactWithPlayer touchPlayer;
-
+    //creamos el tipo delegado collisionWithPlayer
+    //collision porque es algo físico, para diferenciarlo de A
+    public delegate void collisionWithPlayer();
+    public static event collisionWithPlayer contactPlayer;
     public int contador_;
 
     // Start is called before the first frame update
     void Start()
     {
         contador_ = 0;
-        ObjectA.contactPlayer += incrementarContador;
-    }
-
-    void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject.tag == "Player" && touchPlayer != null)
-        {
-            touchPlayer();
-        }
+        //establecemos que el delegado touchplayer de objetoB es nuestro metodo imprimir
+        ObjectA.touchPlayer += incrementarContador;
     }
 
     void incrementarContador()
@@ -29,8 +23,19 @@ public class ObjectB : MonoBehaviour
         contador_++;
     }
 
+    void OnCollisionEnter(Collision other)
+    {
+        //si choco con player y mi evento no es nulo
+        if (other.gameObject.tag == "Player" && contactPlayer != null)
+        {
+            //llamo a mi evento
+            contactPlayer();
+        }
+    }
+    
     void OnDisable()
     {
-        ObjectA.contactPlayer -= incrementarContador;
+        //debemos liberar los delegados, unity no lo hace por nosotros
+        ObjectA.touchPlayer -= incrementarContador;
     }
 }

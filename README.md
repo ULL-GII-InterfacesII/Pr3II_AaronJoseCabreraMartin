@@ -26,7 +26,5 @@ Tipo A
 
 Tipo B
 ![imagen](/media/1.5.png)
-
-
 ![gif](/media/1.6.gif)
 
