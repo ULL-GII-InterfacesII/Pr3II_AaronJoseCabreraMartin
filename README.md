@@ -21,10 +21,10 @@ Se nos pide que cuando el jugador colisione con el objeto de tipo B, el objeto t
 
 Y cuando el objeto A sea tocado por el jugador, se le aumentará un contador en el objeto B.
 
-Tipo A
+Tipo A (el hombre)
 ![imagen](/media/1.4.png)
 
-Tipo B
+Tipo B (la mujer)
 ![imagen](/media/1.5.png)
 ![gif](/media/1.6.gif)
 
