@@ -16,47 +16,50 @@ public class MyCharacterController : MonoBehaviour
     public static float distanciaMedia_;
 
     public delegate void inRangeWithPlayer();
+    public delegate void inSecondRangeWithPlayer(float fuerza);
     public static event inRangeWithPlayer destroyA;
-    public static event inRangeWithPlayer empujarA;
+    public static event inSecondRangeWithPlayer empujarA;
 
     // Start is called before the first frame update
-    void Start()
-    {
+    void Start(){
         tf_ = GetComponent<Transform>();
         velocity_ = 15F;
-        fuerza_ = 0;
-        distanciaMinima_ = 2.5F;
+        fuerza_ = 10;
+        distanciaMinima_ = 3.5F;
         distanciaMedia_ = 7;
+        MyCamera.playerShoot +=disparar;
+
+        MyCamera.decreasePower += bajarPoder;
     }
 
     // Update is called once per frame
-    void Update()
-    {
-        if (Input.GetKey("up"))
-        {
+    void Update(){
+        if (Input.GetKey("up")){
             tf_.Translate(velocity_ * Vector3.forward * Time.deltaTime);
-        }else if (Input.GetKey("down"))
-        {
+        }else if (Input.GetKey("down")){
             tf_.Translate(velocity_ * Vector3.back * Time.deltaTime);
-        }else if (Input.GetKey("left"))
-        {
+        }else if (Input.GetKey("left")){
             tf_.Rotate(0, -7*velocity_  * Time.deltaTime, 0);
-        }else if (Input.GetKey("right"))
-        {
+        }else if (Input.GetKey("right")){
             tf_.Rotate(0, 7*velocity_ *  Time.deltaTime, 0);
         }
+    }
 
-        if( Input.GetKey("space")  && destroyA != null)
-        {
-            Debug.Log("Disparo!!");
+    void disparar(){
+        if(  destroyA != null){
+            Debug.Log("Destruccion!!");
             destroyA();
         }
-
-        if (Input.GetKey("space") && empujarA != null)
-        {
+        if ( empujarA != null){
             Debug.Log("Disparo!!");
-            empujarA();
+            empujarA(fuerza_);
         }
+    }
 
+    void bajarPoder(){
+        Debug.Log("Baja el poder!!");
+        if(fuerza_ > 1){
+            fuerza_--;
+        }
     }
 }

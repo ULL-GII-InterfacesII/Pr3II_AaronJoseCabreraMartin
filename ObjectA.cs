@@ -11,56 +11,48 @@ public class ObjectA : MonoBehaviour
 
 
     // Start is called before the first frame update
-    void Start()
-    {
+    void Start(){
         ObjectB.contactPlayer += imprimir;
         player_ = GameObject.FindWithTag("Player");
     }
 
-    void Update()
-    {
-        if( Vector3.Distance(GetComponent<Transform>().position,player_.transform.position) < MyCharacterController.distanciaMinima_)
-        {
+    void Update(){
+        float distanciaJugador = Vector3.Distance(GetComponent<Transform>().position, player_.transform.position);
+        if( distanciaJugador < MyCharacterController.distanciaMinima_){
+            MyCharacterController.empujarA -= empujarA;
             MyCharacterController.destroyA += destroyA;
-        }else if( Vector3.Distance(GetComponent<Transform>().position, player_.transform.position) < MyCharacterController.distanciaMedia_)
-        {
+        }else if( distanciaJugador < MyCharacterController.distanciaMedia_){
+            MyCharacterController.destroyA -= destroyA;
             MyCharacterController.empujarA += empujarA;
+        }else{
+            MyCharacterController.destroyA -= destroyA;
+            MyCharacterController.empujarA -= empujarA;
         }
     }
 
-    void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject.tag == "Player" && touchPlayer != null)
-        {
+    void OnTriggerEnter(Collider other){
+        if (other.gameObject.tag == "Player" && touchPlayer != null){
             touchPlayer();
         }
     }
 
-    void imprimir()
-    {
+    void imprimir(){
         Debug.Log("Has tocado a B!!!");
     }
 
-    void OnDestroy()
-    {
+    void destroyA(){
         ObjectB.contactPlayer -= imprimir;
-        MyCharacterController.destroyA -= destroyA;
         MyCharacterController.empujarA -= empujarA;
-
-    }
-
-    void destroyA()
-    {
+        MyCharacterController.destroyA -= destroyA;
         Destroy(gameObject);
     }
 
-    void empujarA()
-    {
+    void empujarA(float fuerza){
         //vector que apunta desde el jugador al objetoA
         var direccion = (player_.transform.position - GetComponent<Transform>().position);
         //normalizamos el vector
         direccion = direccion / direccion.magnitude;
-        GetComponent<Transform>().Translate( direccion * Time.deltaTime );
+        GetComponent<Transform>().Translate( fuerza * direccion * Time.deltaTime );
         MyCharacterController.empujarA -= empujarA;
     }
 }
