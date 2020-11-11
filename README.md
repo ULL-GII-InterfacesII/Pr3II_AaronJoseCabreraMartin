@@ -82,3 +82,11 @@ Para desarrollar este tercer punto, he decidido utilizar unos conos amarillos de
 Ejemplo de ejecución:
 ![gif](/media/3.4.gif)
 
+### 4)
+
+El último ejercicio consiste en crear un punto de luz que se pueda apagar y encender con el teclado. Para hacerlo he creado una luz que sigue al jugador y que si el jugador pulsa _"l"_ se enciende/apaga.
+
+![imagen](/media/4.1.png)
+![imagen](/media/4.2.png)
+
+
