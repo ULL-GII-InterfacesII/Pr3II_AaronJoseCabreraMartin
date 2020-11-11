@@ -6,9 +6,7 @@ public class ObjectA : MonoBehaviour
 {
     public delegate void contactWithPlayer();
     public static event contactWithPlayer touchPlayer;
-
     private GameObject player_;
-
 
     // Start is called before the first frame update
     void Start(){

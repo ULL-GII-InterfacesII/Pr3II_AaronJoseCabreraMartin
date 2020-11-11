@@ -25,12 +25,15 @@ public class MyCamera : MonoBehaviour
     void Update(){
         Vector3 positionJugador = player_.transform.position;
         if (Input.GetKey("up")) {
-            tf_.Translate(velocity_ * Vector3.forward * Time.deltaTime);
-        } else if (Input.GetKey("down")) {
-            tf_.Translate(velocity_ * Vector3.back * Time.deltaTime);
-        } else if (Input.GetKey("left")) {
+            tf_.position = positionJugador + player_.transform.TransformDirection(new Vector3(0,1.3F,0));
+        }
+        if (Input.GetKey("down")) {
+            tf_.position = positionJugador + player_.transform.TransformDirection(new Vector3(0,1.3F,0));
+        }
+        if (Input.GetKey("left")) {
             tf_.RotateAround(positionJugador, Vector3.up, -velocity_* 7 * Time.deltaTime);
-        } else if (Input.GetKey("right")) {
+        }
+        if (Input.GetKey("right")) {
             tf_.RotateAround(positionJugador, Vector3.up, velocity_ * 7 * Time.deltaTime);
         }
         if( Input.GetKey("space") && playerShoot != null) {

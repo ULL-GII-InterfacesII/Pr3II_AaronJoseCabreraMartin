@@ -10,11 +10,9 @@ public class MyCharacterController : MonoBehaviour
 
     private Transform tf_;
     public float velocity_;
-
     public float fuerza_;
     public static float distanciaMinima_;
     public static float distanciaMedia_;
-
     public delegate void inRangeWithPlayer();
     public delegate void inSecondRangeWithPlayer(float fuerza);
     public static event inRangeWithPlayer destroyA;
@@ -25,8 +23,8 @@ public class MyCharacterController : MonoBehaviour
         tf_ = GetComponent<Transform>();
         velocity_ = 15F;
         fuerza_ = 10;
-        distanciaMinima_ = 3.5F;
-        distanciaMedia_ = 7;
+        distanciaMinima_ = 2.5F;
+        distanciaMedia_ = 10;
         MyCamera.playerShoot +=disparar;
 
         MyCamera.decreasePower += bajarPoder;
@@ -36,11 +34,16 @@ public class MyCharacterController : MonoBehaviour
     void Update(){
         if (Input.GetKey("up")){
             tf_.Translate(velocity_ * Vector3.forward * Time.deltaTime);
-        }else if (Input.GetKey("down")){
+            //GetComponent<Rigidbody>().AddForce(velocity_ * Vector3.forward * Time.deltaTime);
+        }
+        if (Input.GetKey("down")){
             tf_.Translate(velocity_ * Vector3.back * Time.deltaTime);
-        }else if (Input.GetKey("left")){
+            //GetComponent<Rigidbody>().AddForce(velocity_ * Vector3.back * Time.deltaTime);
+        }
+        if (Input.GetKey("left")){
             tf_.Rotate(0, -7*velocity_  * Time.deltaTime, 0);
-        }else if (Input.GetKey("right")){
+        }
+        if (Input.GetKey("right")){
             tf_.Rotate(0, 7*velocity_ *  Time.deltaTime, 0);
         }
     }

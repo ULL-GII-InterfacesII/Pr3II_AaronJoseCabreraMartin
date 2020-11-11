@@ -64,3 +64,17 @@ Para bajarle el poder al jugador, cree un método del controlador del jugador qu
 Además adapté el delegate del tipo de empujarA para del ObjectA que reciba el float de la fuerza del jugador. 
 
 El poder del jugador influirá escalarmente en la fuerza con la que se empuja a los objetos tipo A, esta no puede disminuir de 1.
+
+### 3)
+
+El tercer ejercicio nos pide crear unos objetos que si el jugador los recolecta, se muevan algunos obstáculos y permitan el acceso a otra zona.
+
+Antes de abarcar este ejercicio he decidido cambiar la cámara del juego de una de 3º persona a una de 1º persona y añadir un modelo en 3D de una pistola que gira y se mueve de tal manera que parece que el jugador la lleva encima.
+
+Para desarrollar este tercer punto, he decidido utilizar unos conos amarillos del pack _"PolygonStarter"_ como llaves, estos están sujetos a un script que llama, cuando tocan al jugador, al evento OpenDoor de su respectiva _puerta_ actuando como _llaves_ para éstas. El evento OpenDoor apunta al método _Open_ de esa puerta, el cual simplemente desplaza el objeto cubo que representa a la puerta hacia arriba. El objeto cono (la llave) desaparece cuando es tocado por el jugador.
+
+**LLAVE**
+![imagen](/media/3.1.png)
+
+Ejemplo de ejecución:
+![gif](/media/3.2.gif)
