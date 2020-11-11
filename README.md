@@ -74,7 +74,11 @@ Antes de abarcar este ejercicio he decidido cambiar la cámara del juego de una 
 Para desarrollar este tercer punto, he decidido utilizar unos conos amarillos del pack _"PolygonStarter"_ como llaves, estos están sujetos a un script que llama, cuando tocan al jugador, al evento OpenDoor de su respectiva _puerta_ actuando como _llaves_ para éstas. El evento OpenDoor apunta al método _Open_ de esa puerta, el cual simplemente desplaza el objeto cubo que representa a la puerta hacia arriba. El objeto cono (la llave) desaparece cuando es tocado por el jugador.
 
 **LLAVE**
-![imagen](/media/3.1.png)
+![imagen](/media/3.1.PNG)
+
+![imagen](/media/3.2.png)
+![imagen](/media/3.3.png)
 
 Ejemplo de ejecución:
-![gif](/media/3.2.gif)
+![gif](/media/3.4.gif)
+
